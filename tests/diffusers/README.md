@@ -62,4 +62,32 @@ python3 test_examples_XXX >> test_examples.log 2>&1
 
 ### 测试注意事项
 
+#### max_train_steps
 基于参数`checkpointing_steps`和`checkpoints_total_limit`，diffusers支持保存对应steps下的权重结果。这两个参数基于`max_train_steps`提供的steps进行保存，而Huggingface提供的源码里计算`max_train_steps`方式并不统一，同时NPU数目的不同也会影响`max_train_steps`,如果UT测试时碰到涉及checkpoint保存的用例，可以查看日志输出的结果，进而修正`max_train_steps`。
+
+#### find_unsed_parameters
+部分脚本运行会报错涉及需要设置`find_unsed_parameters=True`，错误来源于Diffusers官方训练脚本存在错误。如果遇到，可以修正如下代码
+
+```python
+#源码
+from accelerate.utils import ProjectConfiguration, set_seed
+    accelerator = Accelerator(
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
+        mixed_precision=args.mixed_precision,
+        log_with=args.report_to,
+        project_config=accelerator_project_config,
+    )
+```
+
+```python
+#修正代码
+from accelerate.utils import DistributedDataParallelKwargs, ProjectConfiguration, set_seed
+    kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
+    accelerator = Accelerator(
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
+        mixed_precision=args.mixed_precision,
+        log_with=args.report_to,
+        project_config=accelerator_project_config,
+        kwargs_handlers=[kwargs],
+    )
+```

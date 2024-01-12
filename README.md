@@ -279,6 +279,11 @@ accelerate launch examples/nlp_example.py
 - [ ] Quantization
 
 
+## 公网地址说明
+
+  代码涉及公网地址参考 public_address_statement.md
+
+
 ## FQA
 
 - 使用`transformers`、`accelerate`、`trl`等套件时仅需在您的脚本入口处添加 `import torch, torch_npu` 请勿使用 `from torch_npu.contrib import transfer_to_npu`

@@ -143,7 +143,7 @@ python run_glue.py \
 - [ ] DeepSpeed support (Experimental)
 - [ ] Big model inference
 
-
+更多支持的特性请查看[Transformers特性支持列表](docs/Transformers特性支持列表.md)，该列表特性在`transformers==4.37.1`下完成特性测试。
 
 ## Accelerate
 Accelerate 已经原生支持 Ascend NPU，这里给出基本的使用方法，请参考 [accelerate-usage-guides](https://huggingface.co/docs/accelerate/main/en/usage_guides/explore) 的解锁更多用法。
@@ -278,6 +278,11 @@ accelerate launch examples/nlp_example.py
 - [ ] Big model inference
 - [ ] Quantization
 
+更多支持的特性请查看[Accelerate特性支持列表](docs/Accelerate特性支持列表.md)，该列表特性在`accelerate==0.26.1`下完成特性测试。
+
+## TRL
+
+TRL支持的特性请查看[Trl特性支持列表](docs/Trl特性支持列表.md)， 该列表特性在`trl==0.7.11.dev0(源码安装)`下完成特性测试。
 
 ## 公网地址说明
 

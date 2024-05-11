@@ -1,0 +1,18 @@
+num_training_steps: 1000
+micro_batch_size: 4
+dp: 8
+gradient_accumulation_steps: 8
+seq_length: 4096
+megatron_dataset_flag: False
+data_path: 'xxx'
+save_dir: 'xxx'
+save_interval: 10000
+eval_interval: 10000
+openmind_model_path: 'xxx'
+dtype: 'bf16'
+
+dataloader_config:
+  return_tensors: "pt"
+  padding: True
+  pad_to_multiple_of: 4096
+  max_length: 4096

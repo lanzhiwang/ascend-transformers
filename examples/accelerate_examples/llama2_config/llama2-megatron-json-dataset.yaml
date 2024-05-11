@@ -1,0 +1,60 @@
+num_training_steps: 1000
+micro_batch_size: 4
+dp: 1
+gradient_accumulation_steps: &gradient_accumulation_steps 8
+seq_length: &seq_length 4096
+megatron_dataset_flag: False
+data_path: 'xxx/alpaca_data.json'
+save_dir: 'xxx'
+save_interval: 10000
+eval_interval: 10000
+openmind_model_path: 'xxx'
+dtype: 'bf16'
+
+plugin_args:
+  tp_degree: 8
+  pp_degree: 1
+  num_micro_batches: *gradient_accumulation_steps
+  gradient_clipping: 1.0
+  use_distributed_optimizer: False
+  sequence_parallelism: False
+  other_megatron_args:
+    tokenizer_model: 'xxx/tokenizer.model'
+    tokenizer_type: "Llama2Tokenizer"
+    finetune: False
+    recompute_granularity: "full"
+    recompute_method: "block"
+    recompute_num_layers: 32
+    optimizer: "adam"
+    lr: 1e-5
+    min_lr: 1e-6
+    adam_beta2: 0.95
+    add_bias_linear: False
+    async_tensor_model_parallel_allreduce: True
+    attention_dropout: 0.0
+    attention_softmax_in_fp32: True
+    bias_gelu_fusion: False
+    ffn_hidden_size: 11008
+    hidden_dropout: 0.0
+    init_method_std: 0.01
+    initial_loss_scale: 65536.0
+    lr_decay_style: "cosine"
+    lr_warmup_fraction: 0.01
+    masked_softmax_fusion: False
+    normalization: "RMSNorm"
+    sequence_parallel: True
+    split: "100,0,0"
+    swiglu: True
+    untie_embeddings_and_output_weights: True
+    use_flash_attn: True
+    weight_decay: 0.1
+    no_load_optim: True
+    no_load_rng: True
+    eval_iters: 10
+    position_embedding_type: "rope"
+
+dataloader_config:
+  return_tensors: "pt"
+  padding: True
+  pad_to_multiple_of: *seq_length
+  max_length: *seq_length

@@ -1,5 +1,5 @@
 num_training_steps: 1000
-micro_batch_size: 4
+micro_batch_size: 1
 dp: 8
 gradient_accumulation_steps: 8
 seq_length: 4096
@@ -12,7 +12,7 @@ openmind_model_path: 'xxx'
 dtype: 'bf16'
 
 dataloader_config:
-  return_tensors: "pt"
-  padding: True
+  return_tensors: 'pt'
+  padding: 'max_length'
   pad_to_multiple_of: 4096
   max_length: 4096

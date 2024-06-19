@@ -17,7 +17,7 @@ plugin_args:
   num_micro_batches: *gradient_accumulation_steps
   gradient_clipping: 1.0
   use_distributed_optimizer: False
-  sequence_parallelism: False
+  sequence_parallelism: True
   other_megatron_args:
     tokenizer_model: 'xxx/tokenizer.model'
     tokenizer_type: "Llama2Tokenizer"
@@ -42,7 +42,6 @@ plugin_args:
     lr_warmup_fraction: 0.01
     masked_softmax_fusion: False
     normalization: "RMSNorm"
-    sequence_parallel: True
     split: "100,0,0"
     swiglu: True
     untie_embeddings_and_output_weights: True
@@ -54,7 +53,7 @@ plugin_args:
     position_embedding_type: "rope"
 
 dataloader_config:
-  return_tensors: "pt"
-  padding: True
+  return_tensors: 'pt'
+  padding: 'max_length'
   pad_to_multiple_of: *seq_length
   max_length: *seq_length

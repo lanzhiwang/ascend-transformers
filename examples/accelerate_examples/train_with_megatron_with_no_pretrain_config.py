@@ -29,9 +29,8 @@ megatron_train_args = {
     "pp_degree": 1,
     "gradient_clipping": 1.0,
     "num_micro_batches": 8,
-    "recompute_activations": False,
     "use_distributed_optimizer": False,
-    "sequence_parallelism": False,
+    "sequence_parallelism": True,
     "other_megatron_args": {
         "tokenizer_model": os.path.join(BASE_MODEL, "tokenizer.model"),
         "finetune": False,
@@ -55,7 +54,6 @@ megatron_train_args = {
         "lr_warmup_fraction": 0.01,
         "masked_softmax_fusion": False,
         "normalization": "RMSNorm",
-        "sequence_parallel": True,
         "split": "100,0,0",
         "swiglu": True,
         "untie_embeddings_and_output_weights": True,

@@ -24,4 +24,4 @@ SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
 SCRIPT_PATH="${SCRIPT_DIR}"/train_with_megatron_with_no_pretrain_config.py
 CONF_PATH="${SCRIPT_DIR}"/accelerate_config/accelerate_megatron_config.yaml
 
-accelerate launch --config_file "${CONF_PATH}" "${SCRIPT_PATH}" | tee "${SCRIPT_DIR}"/train.log
+accelerate launch --config_file "${CONF_PATH}" "${SCRIPT_PATH}"

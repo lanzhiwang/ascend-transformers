@@ -29,11 +29,6 @@ def _get_megatron_lm_plugin(pretrain_args):
     }
     if pretrain_args.plugin_args:
         for key, value in pretrain_args.plugin_args.items():
-            if key in plugin_args.keys():
-                print_in_main_process(
-                    f"WARNING: Make accelerator megatron_lm plugin overriding arguments for "
-                    f"{key}:{plugin_args[key]} with {key}:{value}"
-                )
             plugin_args[key] = value
 
     return MegatronLMPlugin(**plugin_args)

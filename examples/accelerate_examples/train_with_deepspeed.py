@@ -14,7 +14,7 @@
 import os
 
 import torch
-from openmind import get_scheduler
+from transformers import get_scheduler
 
 import accelerate_npu
 from openmind import PreTrainingArguments, PreTrainer
@@ -35,7 +35,7 @@ tokenizer = get_tokenizer(tokenizer_path=pretrain_args.openmind_model_path, use_
 transformer_dataloader_config = pretrain_args.get_dataloader_config()
 train_dataloader, eval_dataloader = make_train_and_eval_dataloader(
     dataloader_config=transformer_dataloader_config,
-    micro_batch_size=pretrain_args.micro_batch_size,
+    micro_batch_size=pretrain_args.micro_batch_size * pretrain_args.dp,
     data_files=pretrain_args.data_path,
     max_length=pretrain_args.seq_length,
     tokenizer=tokenizer,

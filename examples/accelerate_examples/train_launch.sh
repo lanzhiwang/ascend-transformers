@@ -25,35 +25,4 @@ SCRIPT_PATH="${SCRIPT_DIR}"/train_with_megatron.py
 ACCELERATE_CONF_PATH="$SCRIPT_DIR"/accelerate_config/accelerate_megatron_config.yaml
 PRETRAIN_CONF_PATH="$SCRIPT_DIR"/llama2_config/llama2-megatron.yaml
 
-ARGS=`getopt -o s:a:p: --long script_path:,accelerate_conf_path:,pretrain_conf_path: -n "$0" -- "$@"`
-eval set -- "${ARGS}"
-while true
-do
-    case "$1" in
-        -s|--script_path)
-            echo "Option script_path, argument $2";
-            SCRIPT_PATH=$2
-            shift 2
-            ;;
-        -a|--accelerate_conf_path)
-            echo "Option accelerate_conf_path, argument $2";
-            ACCELERATE_CONF_PATH=$2
-            shift 2
-            ;;
-        -p|--pretrain_conf_path)
-            echo "Option pretrain_conf_path, argument $2";
-            PRETRAIN_CONF_PATH=$2
-            shift 2
-            ;;
-        --)
-            shift
-            break
-            ;;
-        *)
-            echo "Internal error!"
-            exit 1
-            ;;
-    esac
-done
-
-accelerate launch --config_file "${ACCELERATE_CONF_PATH}" "${SCRIPT_PATH}" --pretrain_config_file "${PRETRAIN_CONF_PATH}" | tee "${SCRIPT_DIR}"/train.log
+accelerate launch --config_file "${ACCELERATE_CONF_PATH}" "${SCRIPT_PATH}" --pretrain_config_file "${PRETRAIN_CONF_PATH}"

@@ -128,6 +128,4 @@ def make_datasets(tokenizer, data_files, max_length, test_size=200, logger=None)
         generate_and_tokenize_prompt, remove_columns=data["train"].column_names, num_proc=2
     )
     data["test"] = data["test"].map(generate_and_tokenize_prompt, remove_columns=data["test"].column_names, num_proc=2)
-    if logger:
-        logger.info(data)
     return data["train"], data["test"]

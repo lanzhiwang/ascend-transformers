@@ -31,7 +31,7 @@ def parse_args():
 def get_pretrain_config_file():
     args = parse_args()
     if args.pretrain_config_file:
-        print_in_main_process("*" * 15 + f"The pretrain config file path is : {args.pretrain_config_file}" + "*" * 15)
+        print_in_main_process("*" * 15 + "Info: The pretrain config file is configured." + "*" * 15)
         return args.pretrain_config_file
-    print_in_main_process("*" * 15 + "Warning: Pretrain config file is not configured." + "*" * 15)
+    print_in_main_process("*" * 15 + "Warning: The pretrain config file is not configured." + "*" * 15)
     return None

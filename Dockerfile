@@ -8,7 +8,7 @@ COPY mlserver-example /work/mlserver-example
 
 RUN set -eux; \
     apt-get update; \
-    apt-get install -y --no-install-recommends ca-certificates wget git git-lfs tree; \
+    apt-get install -y --no-install-recommends ca-certificates wget git git-lfs tree libhdf5-dev; \
     rm -rf /var/lib/apt/lists/*; \
     pip install -r requirements.txt; \
     pip freeze; \

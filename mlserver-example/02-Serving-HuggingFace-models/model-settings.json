@@ -2,9 +2,9 @@
 	"name": "transformer",
 	"implementation": "mlserver_huggingface.HuggingFaceRuntime",
 	"parameters": {
+		"uri": "./gpt2/",
 		"extra": {
-			"task": "text-generation",
-			"pretrained_model": "distilgpt2"
+			"task": "text-generation"
 		}
 	}
 }

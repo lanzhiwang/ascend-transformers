@@ -16,5 +16,5 @@ RUN set -eux; \
     tree -L 3 .; \
     cd mlserver-example/02-Serving-HuggingFace-models; \
     git lfs install; \
-    git clone https://huggingface.co/openai-community/gpt2; \
+    GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/openai-community/gpt2; \
     tree -L 5 /work/mlserver-example

@@ -17,4 +17,5 @@ RUN set -eux; \
     cd mlserver-example/02-Serving-HuggingFace-models; \
     git lfs install; \
     GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/openai-community/gpt2; \
-    tree -L 5 /work/mlserver-example
+    tree -L 5 /work/mlserver-example; \
+    pip cache purge

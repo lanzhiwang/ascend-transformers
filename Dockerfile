@@ -2,5 +2,5 @@
 FROM python:3.10.12-bullseye
 
 RUN set -eux; \
-    pip install transformers==4.37.1; \
+    pip install transformers==4.37.1 'transformers[torch]'; \
     pip freeze

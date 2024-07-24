@@ -10,6 +10,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends ca-certificates wget git git-lfs tree libhdf5-dev; \
     rm -rf /var/lib/apt/lists/*; \
+    pip install --upgrade pip setuptools wheel; \
     pip install -r requirements.txt; \
     pip freeze; \
     pwd; \
